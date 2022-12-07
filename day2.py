@@ -1,4 +1,3 @@
-###########################################part 1
 array = open("day2Input", "r").read().split("\n")
 
 wins = {
@@ -13,7 +12,35 @@ draws = {
 }
 
 
-def sum_points(arr):
+def part2(arr):
+    points = 0
+
+
+    for index in arr:
+        if index[1] == "Y" and index[0] == "A":
+            points += 4
+        elif index[1] == "Y" and index[0] == "B":
+            points += 5
+        elif index[1] == "Y" and index[0] == "C":
+            points += 6
+
+        if index[1] == "X" and index[0] == "A":
+            points += 3
+        elif index[1] == "X" and index[0] == "B":
+            points += 1
+        elif index[1] == "X" and index[0] == "C":
+            points += 2
+
+        if index[1] == "Z" and index[0] == "A":
+            points += 8
+        elif index[1] == "Z" and index[0] == "B":
+            points += 9
+        elif index[1] == "Z" and index[0] == "C":
+            points += 7
+    return points
+
+
+def part1(arr):
     points = 0
     for i in range(0, len(arr)):
         arr[i] = arr[i].split(" ")
@@ -39,4 +66,5 @@ def sum_points(arr):
     return points
 
 
-print(sum_points(array))
+print(part1(array))
+print(part2(array))
