@@ -21,7 +21,6 @@ def part1(file):
     # base number of visible trees
 
     indexes = []  # indexes of trees in rows
-    indexesC = []  # indexes of trees in columns
     for i in range(1, len(rows) - 1):
         for j in range(1, len(columns) - 1):
             x = j - 1
@@ -48,7 +47,7 @@ def part1(file):
 
             while x >= 0 and int(columns[i][j]) > int(columns[i][x]):
                 if x == 0:
-                    indexes.append(str(i) + "," + str(j))
+                    indexes.append(str(j) + "," + str(i))
                 x -= 1
             try:
                 while y < len(columns) and \
@@ -61,5 +60,8 @@ def part1(file):
             # These while loops are used to check whether tree is matching the conditions from top and bottom.
     return len(list(set(indexes))) + visible
 
+def part2(file):
+
+    return 1
 
 print(part1(myFile))
