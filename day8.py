@@ -61,7 +61,77 @@ def part1(file):
     return len(list(set(indexes))) + visible
 
 def part2(file):
+    columns = []
+    rows = []
 
-    return 1
+    for i in file:
+        columns.append([])
+
+    for i in file:
+        rows.append(i)
+
+    for i in rows:
+        for j in range(0, len(i)):
+            columns[j].append(i[j])
+
+    multiplier = 0
+    multipliers = []
+    check = 1
+    res = 1
+    test = []
+    for i in range(0, len(rows) - 1):
+        for j in range(0, len(columns) - 1):
+            x = j - 1
+            y = j + 1
+
+            while x >= 0:
+                multiplier += 1
+                if int(rows[i][j]) <= int(rows[i][x]):
+                    break
+                x -= 1
+
+            multipliers.append(multiplier)
+            multiplier = 0
+
+            while y < len(rows):
+                multiplier += 1
+                if int(rows[i][j]) <= int(rows[i][y]):
+                    break
+                y += 1
+
+            multipliers.append(multiplier)
+            multiplier = 0
+
+            x = i - 1
+            y = i + 1
+            #return int(columns[j][i + 1])
+            while x >= 0:
+                multiplier += 1
+                if int(columns[j][i]) <= int(columns[j][x]):
+                    break
+                x -= 1
+
+            multipliers.append(multiplier)
+            multiplier = 0
+
+            while y < len(columns):
+                multiplier += 1
+                if int(columns[j][i]) <= int(columns[j][y]):
+                    break
+
+                y += 1
+            multipliers.append(multiplier)
+            multiplier = 0
+
+            for el in multipliers:
+                check *= el
+
+            if check >= res:
+                res = check
+                test = [i, j, rows[i][j], multipliers]
+            multipliers = []
+            check = 1
+
+    return [res, test]
 
 print(part1(myFile))
