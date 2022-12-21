@@ -4,17 +4,13 @@ myFile = open("day8Input", "r").read().split("\n")
 def part1(file):
     columns = []
     rows = []
-
     for i in file:
         columns.append([])
-
     for i in file:
         rows.append(i)
-
     for i in rows:
         for j in range(0, len(i)):
             columns[j].append(i[j])
-
     # these for loops are meant to create two arrays with columns and rows of the input
 
     visible = (len(columns) * 2) + (len(columns) * 2) - 4
@@ -25,7 +21,6 @@ def part1(file):
         for j in range(1, len(columns) - 1):
             x = j - 1
             y = j + 1
-
             while x >= 0 and int(rows[i][j]) > int(rows[i][x]):
                 if x == 0:
                     indexes.append(str(i) + "," + str(j))
@@ -132,6 +127,4 @@ def part2(file):
             multipliers = []
             check = 1
 
-    return [res, test]
-
-print(part1(myFile))
+    return res
